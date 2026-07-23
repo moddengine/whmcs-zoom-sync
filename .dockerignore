@@ -1,0 +1,7 @@
+.env
+.git/
+.idea/
+docker-compose.yml
+docker-compose.override.yml
+whmcs-zoom-sync
+*.log

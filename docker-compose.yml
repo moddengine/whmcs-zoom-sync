@@ -1,0 +1,23 @@
+# Deploy/update: docker compose up -d --build
+# View logs:    docker compose logs -f
+# Manual sync:  docker compose run --rm --entrypoint /usr/local/bin/whmcs-zoom-sync whmcs-zoom-sync
+services:
+  whmcs-zoom-sync:
+    build:
+      context: .
+    env_file:
+      - .env
+    environment:
+      TZ: Australia/Melbourne
+    restart: unless-stopped
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 5m
+    logging:
+      driver: local
+      options:
+        max-size: 10m
+        max-file: "3"
